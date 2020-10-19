@@ -17,6 +17,9 @@ function displayPhotos() {
         const img = document.createElement('img');
         img.setAttribute('src', photo.urls.regular);
         img.setAttribute('alt', photo.alt_description);
+        img.setAttribute('title', photo.alt_description);
+        item.appendChild(img);
+        imageContainer.appendChild(item);
     });
 }
 
@@ -26,6 +29,7 @@ async function getPhotos() {
         const response = await fetch(API);
         photosArray = await response.json();
         displayPhotos();
+        console.log(photosArray)
     } catch (error) {
         console.log(error);
     };
