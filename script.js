@@ -56,7 +56,8 @@ async function getPhotos() {
         console.log(photosArray);
         displayPhotos();
     } catch (error) {
-        getPhotos();
+        // getPhotos();
+        console.log(error)
     };
 }
 
@@ -64,6 +65,7 @@ async function getPhotos() {
 window.addEventListener('scroll', () => {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000 && ready) {
         ready = false;
+        console.log(ready)
         getPhotos();
     };
 });
