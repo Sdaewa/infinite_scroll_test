@@ -3,11 +3,15 @@ const loader = document.getElementById('loader');
 
 let photosArray = [];
 
-
 const count = 10;
 const keyAPI = 'lwpx-YU7tGq3uAZUmqwwlQt9iXpdS1MRHimbyqXKspQ';
 const API = `https://api.unsplash.com/photos/random/?client_id=${keyAPI}&count=${count}`;
 
+function setAttributes(element, attributes) {
+    for (key in attributes) {
+        element.setAttribute(key, attributes[key]);
+    };
+}
 
 function displayPhotos() {
     photosArray.forEach((photo) => {
@@ -23,14 +27,13 @@ function displayPhotos() {
     });
 }
 
-
 async function getPhotos() {
     try {
         const response = await fetch(API);
         photosArray = await response.json();
         displayPhotos();
-        console.log(photosArray)
     } catch (error) {
+        alert(error);
         console.log(error);
     };
 }
