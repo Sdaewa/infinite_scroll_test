@@ -1,11 +1,10 @@
 const imageContainer = document.getElementById('image-container');
 const loader = document.getElementById('loader');
-
 let photosArray = [];
-
 const count = 10;
 const keyAPI = 'lwpx-YU7tGq3uAZUmqwwlQt9iXpdS1MRHimbyqXKspQ';
 const API = `https://api.unsplash.com/photos/random/?client_id=${keyAPI}&count=${count}`;
+
 
 function setAttributes(element, attributes) {
     for (const key in attributes) {
@@ -41,9 +40,15 @@ async function getPhotos() {
         console.log(photosArray);
         displayPhotos();
     } catch (error) {
-        alert(error);
-        console.log(error);
+        getPhotos();
     };
 }
+
+
+window.addEventListener('scroll', () => {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000) {
+        getPhotos();
+    };
+});
 
 getPhotos();
