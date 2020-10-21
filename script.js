@@ -1,6 +1,6 @@
 const imageContainer = document.getElementById('image-container');
 const loader = document.getElementById('loader');
-const keyAPI = config.SECRET_KEY;
+const keyAPI = 'lwpx-YU7tGq3uAZUmqwwlQt9iXpdS1MRHimbyqXKspQ';
 
 let count = 2;
 let API = `https://api.unsplash.com/photos/random/?client_id=${keyAPI}&count=${count}`;
