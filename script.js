@@ -14,7 +14,7 @@ function imageLoaded() {
     imagesLoaded++;
     if (imagesLoaded === totalImages) {
         ready = true;
-        console.log('ready =', ready);
+        loader.hidden = true;
     };
 }
 
@@ -25,8 +25,8 @@ function setAttributes(element, attributes) {
 }
 
 function displayPhotos() {
+    imagesLoaded = 0;
     totalImages = photosArray.length;
-    console.log('total =', totalImages);
     photosArray.forEach((photo) => {
         const item = document.createElement('a');
 
@@ -53,11 +53,9 @@ async function getPhotos() {
     try {
         const response = await fetch(API);
         photosArray = await response.json();
-        console.log(photosArray);
         displayPhotos();
     } catch (error) {
-        // getPhotos();
-        console.log(error)
+        getPhotos();
     };
 }
 
@@ -65,7 +63,6 @@ async function getPhotos() {
 window.addEventListener('scroll', () => {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000 && ready) {
         ready = false;
-        console.log(ready)
         getPhotos();
     };
 });
